@@ -1,0 +1,12 @@
+*vim-under-the-cursor.txt*  Highlight the word under the cursor and colors
+
+==============================================================================
+USAGE INSTRUCTIONS                                      *vim-under-the-cursor*
+
+This plugin should work out of the box and does not require dedicated
+configuration, however your Vim must use GUI colors for it to work. These
+can be activated with 
+
+  :set termguicolors
+
+vim:tw=78:ts=8:ft=help:norl:
