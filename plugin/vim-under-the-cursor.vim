@@ -43,7 +43,7 @@ function! HighlightWordUnderCursor()
             endif
 
             exec 'syntax clear ' . l:color
-            exec 'syntax match ' . l:color . ' /\#' . l:q . '/'
+            exec 'syntax match ' . l:color . ' /\#' . l:q . '\>/'
         else
             silent! call matchadd('Underline', '\<'.l:currentword.'\>', -1, w:m1)
         endif

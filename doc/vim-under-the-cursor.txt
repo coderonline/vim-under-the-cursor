@@ -9,4 +9,15 @@ can be activated with
 
   :set termguicolors
 
+
+==============================================================================
+EXAMPLE                                         *vim-under-the-cursor-example*
+
+	#ff0000
+	#ff000088
+	#00ff00
+	#00ff0088
+	#0000ff
+	#0000ff88
+
 vim:tw=78:ts=8:ft=help:norl:
