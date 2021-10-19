@@ -43,7 +43,8 @@ function! HighlightWordUnderCursor()
             endif
 
             exec 'syntax clear ' . l:color
-            exec 'syntax match ' . l:color . ' /\#' . l:q . '\>/'
+            exec 'syntax match ' . l:color . ' /\#' . l:q . '\>/' .
+                        \ ' containedin=' . synIDattr(synstack(line('.'), col('.'))[0], "name") . ' contained'
         else
             silent! call matchadd('Underlined', '\<'.l:currentword.'\>', -1, w:m1)
         endif
