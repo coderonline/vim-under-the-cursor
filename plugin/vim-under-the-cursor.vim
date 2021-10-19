@@ -45,13 +45,15 @@ function! HighlightWordUnderCursor()
             exec 'syntax clear ' . l:color
             exec 'syntax match ' . l:color . ' /\#' . l:q . '\>/'
         else
-            silent! call matchadd('Underline', '\<'.l:currentword.'\>', -1, w:m1)
+            silent! call matchadd('Underlined', '\<'.l:currentword.'\>', -1, w:m1)
         endif
     endif
 endfunction
 
 " set updatetime=100
-highlight! Underline cterm=underline gui=underline
+
+" see `:help group-name`
+highlight! Underlined cterm=underline gui=underline
 autocmd CursorMoved,InsertLeave,TextChanged * call HighlightWordUnderCursor()
 
 " vim: expandtab tabstop=4 sw=4
