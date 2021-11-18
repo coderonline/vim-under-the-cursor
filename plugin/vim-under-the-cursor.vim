@@ -55,6 +55,6 @@ endfunction
 
 " see `:help group-name`
 highlight! Underlined cterm=underline gui=underline
-autocmd CursorMoved,InsertLeave,TextChanged * call HighlightWordUnderCursor()
+autocmd CursorMoved,InsertLeave,TextChanged * silent! call HighlightWordUnderCursor()
 
 " vim: expandtab tabstop=4 sw=4
