@@ -33,7 +33,7 @@ function! HighlightWordUnderCursor()
 
             let l:brightness = (l:r / 3) + (l:g / 1) + (l:b / 8)
 
-            " echo 'q:'. l:q . ' r:' . l:r . ' g:' . l:g . ' b:' . l:b . ' a:' . l:a . ' / ' . 
+            " echo 'q:'. l:q . ' r:' . l:r . ' g:' . l:g . ' b:' . l:b . ' a:' . l:a . ' / ' .
             "            \ (str2nr(l:a, 16) / 255.0) . ' brightness: ' . l:brightness . ' / color:' . l:color
 
             if(l:brightness > 240)
@@ -43,8 +43,14 @@ function! HighlightWordUnderCursor()
             endif
 
             exec 'syntax clear ' . l:color
-            exec 'syntax match ' . l:color . ' /\#' . l:q . '\>/' .
-                        \ ' containedin=' . synIDattr(synstack(line('.'), col('.'))[0], "name") . ' contained'
+
+            let l:syntax_stack = synstack(line('.'), col('.'))
+            if(0 < len(l:syntax_stack))
+                exec 'syntax match ' . l:color . ' /\#' . l:q . '\>/' .
+                    \ ' containedin=' . synIDattr(l:syntax_stack[0], "name") . ' contained'
+            else
+                exec 'syntax match ' . l:color . ' /\#' . l:q . '\>/'
+            endif
         else
             silent! call matchadd('Underlined', '\<'.l:currentword.'\>', -1, w:m1)
         endif
@@ -55,6 +61,8 @@ endfunction
 
 " see `:help group-name`
 highlight! Underlined cterm=underline gui=underline
-autocmd CursorMoved,InsertLeave,TextChanged * silent! call HighlightWordUnderCursor()
+autocmd CursorMoved,InsertLeave,TextChanged * call HighlightWordUnderCursor()
+
+" map(synstack(line('.'), col('.')), {_, val -> synIDattr(val, 'name')})
 
 " vim: expandtab tabstop=4 sw=4
