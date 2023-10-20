@@ -52,7 +52,7 @@ function! HighlightWordUnderCursor()
                 exec 'syntax match ' . l:color . ' /\#' . l:q . '\>/'
             endif
         else
-            silent! call matchadd('Underlined', '\<'.l:currentword.'\>', -1, w:m1)
+            silent! call matchadd('UnderTheCursor', '\<'.l:currentword.'\>', -1, w:m1)
         endif
     endif
 endfunction
@@ -60,7 +60,7 @@ endfunction
 " set updatetime=100
 
 " see `:help group-name`
-highlight! Underlined cterm=underline gui=underline
+highlight! UnderTheCursor cterm=underline gui=underline
 autocmd CursorMoved,InsertLeave,TextChanged * call HighlightWordUnderCursor()
 
 " map(synstack(line('.'), col('.')), {_, val -> synIDattr(val, 'name')})
