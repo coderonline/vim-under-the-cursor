@@ -60,8 +60,10 @@ endfunction
 " set updatetime=100
 
 " see `:help group-name`
-highlight! UnderTheCursor cterm=underline gui=underline
-autocmd CursorMoved,InsertLeave,TextChanged * call HighlightWordUnderCursor()
+autocmd VimEnter *
+    \ highlight! UnderTheCursor cterm=underline gui=underline
+autocmd CursorMoved,InsertLeave,TextChanged * 
+    \ call HighlightWordUnderCursor()
 
 " map(synstack(line('.'), col('.')), {_, val -> synIDattr(val, 'name')})
 
